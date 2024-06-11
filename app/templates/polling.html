@@ -1,0 +1,15 @@
+{% extends 'public_admin_base.html' %}
+{% block content %}
+<hr/>
+<div>
+    <h3>Seccion: ({{ section_info.section_id }}) {{ section_info.section_description }}</h3>
+
+    {% for party_section in parties_section_formated %}
+        <div>
+            <p><b>{{ party_section.party_info.party_name }} ({{ party_section.party_info.party_candidate_name }})</b>: <span>{{ party_section.counter }}</span></p>
+        </div>
+    {% endfor %}
+
+    <a href="/get_votes_pdf/{{section_info.section_id}}" > Descargar resultados (PDF)</a>
+</div>
+{% endblock %}

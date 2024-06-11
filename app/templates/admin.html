@@ -1,0 +1,91 @@
+{% extends 'public_admin_base.html' %}
+{% block content %}
+<hr/>
+<div id="party-voting">
+    <h2>Conteo de votos de los partidos políticos</h2>
+
+    <ul>
+        {% for k, party in parties_voting.items() %}
+            <li>
+                <h3>{{ party.party_name }} ({{ party.party_candidate_name }}) tiene {{ party.counter }} votos</h3>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div id="party-info">
+    <div id="parties">
+        <h2>Partidos políticos registrados</h2>
+
+        <ul>
+            {% for party in parties %}
+                <li>
+                    <div>
+                        <form action="{{ url_for('edit_party', party_id=party.party_id) }}" method="GET">
+                            <button type="submit"><h3>{{ party.party_name }} ({{ party.party_candidate_name }})</h3></button>
+                        </form>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div id="create-parties">
+        <h2>Crear Partido político</h2>
+
+        <form action="/create-party" method="POST">
+            <label for="party-name">Nombre nuevo del partido</label>
+            <input type="text" name="party-name" id="party-name" placeholder="Morena">
+
+            <label for="party-candidate-name">Nombre nuevo del representante de partido</label>
+            <input type="text" name="party-candidate-name" id="party-candidate-name" placeholder="Claudia Sheinbaum">
+
+            <input type="submit" value="Crear partido ahora">
+        </form>
+    </div>
+</div>
+<hr/>
+<div id="polling-people-info">
+    <div id="polling-people">
+        <h2>Funcionarios de casilla</h2>
+
+        <ul>
+            {% for pollin_person in polling_people %}
+                <li>
+                    <div>
+                        <form action="{{ url_for('edit_polling', polling_id=pollin_person.person_id) }}" method="GET">
+                            <button type="submit">
+                                <div>
+                                    <p><b>Id del funcionario: </b>{{ pollin_person.person_id }} </p>
+                                    <p><b>Seccion: </b>{{ pollin_person.section_id }}</p>
+                                    <p><b>Nombre de funcionario: </b>{{ pollin_person.person_name }}</p>
+                                    <p><b>Contraseña de funcionario: </b>{{ pollin_person.pwd }}</p>
+                                </div>
+                            </button>
+                        </form>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <div>
+        <h2>Crear funcionario de casilla</h2>
+        <form action="/create-polling-person" method="POST">
+            <label for="person_id">Id de funcionario</label>
+            <input type="text" name="person_id" id="person_id" placeholder="CURP">
+
+            <label for="section_id">Seccion del funcionario</label>
+            <input type="number" name="section_id" id="section_id" placeholder="Seccion del INE">
+
+            <label for="person_name">Alias del funcionario (Nombre) </label>
+            <input type="text" name="person_name" id="person_name" placeholder="Claudio Herrera">
+
+            <label for="pwd">Contraseña definida</label>
+            <input type="text" name="pwd" id="pwd" placeholder="pwd1234">
+
+            <input type="submit" value="Crear funcionario ahora">
+        </form>
+    </div>
+</div>
+{% endblock %}

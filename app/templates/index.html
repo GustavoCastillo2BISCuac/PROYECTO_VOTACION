@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form action="/" method="POST">
+        <label for="person_id">CURP:</label>
+        <input type="text" name="person_id" id="person_id">
+
+        <label for="section_id">Seccion:</label>
+        <input type="text" name="section_id" id="section_id">
+
+        <input type="submit" value="Votar ahora!">
+    </form>
+{% endblock %}

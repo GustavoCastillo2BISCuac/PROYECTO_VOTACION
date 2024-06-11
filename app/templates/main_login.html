@@ -1,0 +1,12 @@
+{% extends 'public_admin_base.html' %}
+{% block content %}
+<form action="/public_admin" method="POST">
+    <label for="person_id">Usuario proporcionado:</label>
+    <input type="text" name="person_id" id="person_id">
+
+    <label for="password">Contraseña:</label>
+    <input type="text" name="password" id="password">
+
+    <input type="submit" value="Login">
+</form>
+{% endblock %}

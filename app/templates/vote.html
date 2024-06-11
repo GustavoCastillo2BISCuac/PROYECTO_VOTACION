@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form action="/vote_register" method="POST">
+
+        {% for party in parties %}
+            {% if party.party_name != "" %}
+                <input type="radio" name="party_selection" value="{{ party.party_id }}">
+                <label for="party_selection">
+                    <p><b>{{ party.party_name }}</b> con {{ party.party_candidate_name }}</p>
+                </label>
+            {% endif %}
+        {% endfor %}
+            <input type="text" name="other_party" placeholder="Si desea agregar a un candidato no registrado, escriba aqui">
+            
+        <input type="submit" value="terminar de votar">
+    </form>
+{% endblock %}

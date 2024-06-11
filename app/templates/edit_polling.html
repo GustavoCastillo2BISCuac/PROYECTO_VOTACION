@@ -1,0 +1,20 @@
+{% extends 'public_admin_base.html' %}
+{% block content %}
+    <hr>
+    <h1>Editar funcionario de casilla</h1>
+    <form action="{{ url_for('edit_polling', polling_id=polling_user.person_id) }}" method="POST">
+        <label for="section_id">Seccion del funcionario</label>
+        <input type="number" name="section_id" id="section_id" placeholder="{{ polling_user.section_id }}" value="{{ polling_user.section_id }}">
+
+        <label for="person_name">Alias del funcionario (Nombre) </label>
+        <input type="text" name="person_name" id="person_name" placeholder="{{ polling_user.person_name }}" value="{{ polling_user.person_name }}">
+
+        <label for="pwd">Contraseña definida</label>
+        <input type="text" name="pwd" id="pwd" placeholder="{{ polling_user.pwd }}" value="{{ polling_user.pwd }}">
+
+        <input type="submit" value="Publicar cambios">
+    </form>
+
+    <a href="/public_admin">Cancelar</a>
+    <a href="/delete-polling/{{polling_user.person_id}}">Eliminar funcionario</a>
+{% endblock %}

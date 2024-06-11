@@ -1,0 +1,17 @@
+{% extends 'public_admin_base.html' %}
+{% block content %}
+    <hr>
+    <h1>Editar partido político</h1>
+    <form action="{{ url_for('edit_party', party_id=party.party_id) }}" method="POST">
+        <label for="party-name">Nombre del partido</label>
+            <input type="text" name="party-name" id="party-name" placeholder="{{ party.party_name }}" value="{{ party.party_name }}">
+
+            <label for="party-candidate-name">Nombre del representante de partido</label>
+            <input type="text" name="party-candidate-name" id="party-candidate-name" placeholder="{{ party.party_candidate_name }}" value="{{ party.party_candidate_name }}">
+
+            <input type="submit" value="Publicar cambios">
+    </form>
+
+    <a href="/public_admin">Cancelar</a>
+    <a href="/delete-party/{{ party.party_name }}">Eliminar partido</a>
+{% endblock %}
